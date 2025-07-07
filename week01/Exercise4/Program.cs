@@ -44,4 +44,4 @@ class Program
 
             Console.WriteLine($"The maximum is: {max}");
     }
-}
+} 
