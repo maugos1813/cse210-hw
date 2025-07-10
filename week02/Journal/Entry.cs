@@ -20,7 +20,7 @@ public class Entry
 
     public static Entry FromFileString(string line)
     {
-        string[] parts = line.Split(" | ", 3);
+        string[] parts = line.Split("|", 3);
         DateTime date = DateTime.Parse(parts[0]);
         string prompt = parts[1];
         string response = parts[2];
