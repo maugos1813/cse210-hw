@@ -1,3 +1,7 @@
+// This file was updated to support exporting journal entries in .CSV format.
+// A new method ToCsvString() was added to produce a safe, Excel-compatible CSV line
+// with proper escaping of double quotes to handle commas and line breaks inside fields.
+
 using System;
 
 public class Entry
@@ -30,5 +34,13 @@ public class Entry
     public override string ToString()
     {
         return $"[{Date:yyyy-MM-dd}] {Prompt}\n  → {Response}\n";
+    }
+
+    // NEW: Converts the entry to a safe CSV-formatted string
+    public string ToCsvString()
+    {
+        string safePrompt = Prompt.Replace("\"", "\"\"");
+        string safeResponse = Response.Replace("\"", "\"\"");
+        return $"\"{Date:yyyy-MM-dd HH:mm}\",\"{safePrompt}\",\"{safeResponse}\"";
     }
 }
